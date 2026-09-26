@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X Rambo</title>
+    <!-- Ganti favicon.png dengan nama file gambar Anda di Spck Editor -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header / Navigasi -->
+    <header class="navbar">
+        <div class="logo">
+            <h1>X Rambo</h1>
+            <span class="watermark">Created by Daus Dopo</span>
+        </div>
+        <nav class="nav-right" id="navRight">
+            <!-- Isi navigasi di-generate dinamis via JavaScript -->
+        </nav>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="container">
+        <div class="hero-card">
+            <h2>Selamat Datang di <span class="highlight">X Rambo</span></h2>
+            <p>Sistem manajemen akun dan otentikasi</p>
+            <div id="welcomeMessage" class="welcome-box"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Created by Daus Dopo &copy; 2026 X Rambo</p>
+    </footer>
+
+    <!-- POP-UP MODAL: Auth (Login & Daftar) -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('authModal')">&times;</span>
+            <div class="tab-header">
+                <button id="tabLoginBtn" type="button" class="tab-btn active" onclick="switchTab('login')">Login</button>
+                <button id="tabRegisterBtn" type="button" class="tab-btn" onclick="switchTab('register')">Daftar</button>
+            </div>
+
+            <!-- Form Login -->
+            <form id="loginForm" class="auth-form" method="post" action="javascript:void(0);" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label for="loginUsername">Username</label>
+                    <input type="text" id="loginUsername" name="username" autocomplete="username" placeholder="Masukkan username" required>
+                </div>
+                <div class="input-group password-group">
+                    <label for="loginPassword">Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="loginPassword" name="password" autocomplete="current-password" placeholder="Masukkan password" required>
+                        <i class="fa-solid fa-eye toggle-pwd" onclick="togglePassword('loginPassword', this)"></i>
+                    </div>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Ingat Saya di Aplikasi</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Masuk</button>
+            </form>
+
+            <!-- Form Daftar -->
+            <form id="registerForm" class="auth-form hidden" method="post" action="javascript:void(0);" onsubmit="handleRegister(event)">
+                <div class="input-group">
+                    <label for="regUsername">Username</label>
+                    <input type="text" id="regUsername" name="username" autocomplete="username" placeholder="Buat username" required>
+                </div>
+                <div class="input-group password-group">
+                    <label for="regPassword">Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="regPassword" name="password" autocomplete="new-password" placeholder="Buat password" required>
+                        <i class="fa-solid fa-eye toggle-pwd" onclick="togglePassword('regPassword', this)"></i>
+                    </div>
+                </div>
+                <div class="input-group password-group">
+                    <label for="regConfirmPassword">Konfirmasi Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="regConfirmPassword" name="confirm-password" autocomplete="new-password" placeholder="Ulangi password" required>
+                        <i class="fa-solid fa-eye toggle-pwd" onclick="togglePassword('regConfirmPassword', this)"></i>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Daftar Akun</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- POP-UP MODAL: Switch / Tambah Akun -->
+    <div id="switchAccountModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('switchAccountModal')">&times;</span>
+            <div class="switch-header">
+                <h3>Kelola & Switch Akun</h3>
+                <button type="button" class="btn btn-small" onclick="openAddAccount()">
+                    <i class="fa-solid fa-plus"></i> Tambah Akun
+                </button>
+            </div>
+            <div id="accountList" class="account-list">
+                <!-- Daftar akun yang tersimpan dimuat di sini -->
+            </div>
+        </div>
+    </div>
+
+    <!-- POP-UP MODAL: Konfirmasi Action -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content text-center">
+            <h3 id="confirmTitle">Konfirmasi</h3>
+            <p id="confirmMessage">Apakah Anda yakin?</p>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('confirmModal')">Batal</button>
+                <button type="button" id="confirmExecuteBtn" class="btn btn-danger">Ya, Lanjutkan</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
